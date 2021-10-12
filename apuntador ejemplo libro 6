@@ -1,0 +1,38 @@
+#include<stdio.h>
+#include<string.h>
+#include<ctype.h>
+#define MAXTOKEN 1OO
+
+enum{NAME, PARENS, BRACKETS};
+void dcl(void);
+void dirdal(void);
+ int gettoken(void);
+ int tokentype;
+ char token[MAXTOKEN];
+ char name[MAXTOKEN];
+ char datatype[MAXTOKEN];
+ char out[1000];
+ 
+ main()
+ {
+ 	int type;
+ 	char temp[MAXTOKEN];
+ 	while(gettoken()!=EOF){
+ 		strcpy(out, token);
+ 		while((type=gettoken())!='\n')
+ 		if(type==PARENS||type==BRACKETS)
+ 		strcat(out, token);
+ 		else if(type=='*'){
+ 			sprinf(temp, "(*%s)", out);
+ 			strcpy(out, temp);
+		 } else if(type==NAME){
+		 	sprintf(temp, "%s%s", token, out);
+		 	strcpy(out, temp);
+		 } else 
+		 printf("entrada invalida en %s\n", token);
+		 printf("%s\n", out);
+		 
+ 		
+	 }
+	 return 0;
+ }
